@@ -2,13 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { ShowsComponent } from './shows/shows.component';
+import { ShowComponent } from './shows/show/show.component';
+import { AppRoutingModule } from './app.routing.module';
+import { HypenTransformPipe } from './hypen-transform.pipe';
+import { TicketTypeComponent } from './shows/show/ticket-type/ticket-type.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ShowsComponent,
+    ShowComponent,
+    HypenTransformPipe,
+    TicketTypeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

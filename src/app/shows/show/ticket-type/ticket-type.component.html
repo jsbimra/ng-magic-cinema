@@ -1,0 +1,14 @@
+<div class="seat-row platinum-row">
+  <h5>{{ticketTypeName}}</h5>
+  <!-- {{ticketTypeData | json}} -->
+
+  <!-- {{defaultSeats | json }} -->
+
+  <ul class="seats-list">
+    <li *ngFor="let seat of defaultSeats; let i = index;">
+      <a style="cursor:pointer">
+        {{ticketTypeData.available_seats[i] === seat ? seat : 'X'}}
+      </a>
+    </li>
+  </ul>
+</div>

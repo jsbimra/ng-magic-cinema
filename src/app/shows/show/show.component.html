@@ -1,0 +1,18 @@
+<section class="show-detail-section">
+  <h3 class="text-capitalize">{{selectedShowName | hypenTransform:'remove' }}</h3>
+
+  <div class="select-seat-panel">
+    <p>Select Seats</p>
+    <!-- {{selectedShow.gold | json}} -->
+    <app-ticket-type [defaultSeats]="defaultSeats.platinum" [ticketTypeName]="'Platinum'" [ticketTypeData]="selectedShow.platinum"></app-ticket-type>
+    <app-ticket-type [defaultSeats]="defaultSeats.gold" [ticketTypeName]="'Gold'" [ticketTypeData]="selectedShow.gold"></app-ticket-type>
+    <app-ticket-type [defaultSeats]="defaultSeats.silver" [ticketTypeName]="'Silver'" [ticketTypeData]="selectedShow.silver"></app-ticket-type>
+
+  </div>
+
+  <div class="legend-panel float-right">
+    <p>Platinum: Rs {{selectedShow.platinum.rate}}/person
+      <br />Gold: Rs {{selectedShow.gold.rate}}/person
+      <br />Silver: Rs {{selectedShow.silver.rate}}/person</p>
+  </div>
+</section>
