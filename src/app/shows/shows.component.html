@@ -1,5 +1,4 @@
 <section class="shows-container">
-  <p>Select your choice of show:</p>
   <ul class="shows-list">
     <li *ngFor="let show of shows; let id = index">
       <a routerLink="{{show.name | hypenTransform }}">{{show.name}}</a>

@@ -3,30 +3,48 @@
 
   <div class="select-seat-panel">
     <p>Select Seats</p>
-    <!-- {{selectedShow.gold | json}} -->
-    <app-ticket-type [defaultSeats]="defaultSeats.platinum" [ticketTypeName]="'Platinum'"
-      [ticketTypeData]="selectedShow.platinum"></app-ticket-type>
-    <app-ticket-type [defaultSeats]="defaultSeats.gold" [ticketTypeName]="'Gold'" 
-    [ticketTypeData]="selectedShow.gold">
+    <!-- {{defaultSeats | json}} -->
+
+    <app-ticket-type [defaultSeats]="defaultSeats" [ticketTypeData]="selectedShow">
     </app-ticket-type>
-    <app-ticket-type [defaultSeats]="defaultSeats.silver" [ticketTypeName]="'Silver'"
-      [ticketTypeData]="selectedShow.silver"></app-ticket-type>
 
   </div>
 
-  <div class="legend-panel float-right text-right">
-    <p><strong>Platinum:</strong> Rs {{selectedShow.platinum.rate}}/person</p>
-    <p><strong>Gold:</strong> Rs {{selectedShow.gold.rate}}/person</p>
-    <p><strong>Silver:</strong> Rs {{selectedShow.silver.rate}}/person</p>
-  </div>
-
-  <div class="legend-panel float-right text-right">
-    <p><strong>Available:</strong> <span class="seat"></span></p>
-    <p><strong>Booked:</strong> <span class="seat booked-seat"></span></p>
-  </div>
   
-  <div class="legend-panel action float-right text-right">
-      <p><button class="btn btn-dark btn-block">Continue</button></p>
+  <div *ngIf="!isContinueTicketReview">
+    <div class="legend-panel float-right text-right">
+      <p><strong>Platinum:</strong> Rs {{selectedShow.platinum.rate}}/person</p>
+      <p><strong>Gold:</strong> Rs {{selectedShow.gold.rate}}/person</p>
+      <p><strong>Silver:</strong> Rs {{selectedShow.silver.rate}}/person</p>
     </div>
-    
+
+    <div class="legend-panel float-right text-right">
+      <p><strong>Available:</strong> <span class="seat"></span></p>
+      <p><strong>Booked:</strong> <span class="seat booked-seat"></span></p>
+    </div>
+
+    <div class="legend-panel action float-right text-right" *ngIf="isSeatSelected">
+        <button class="btn btn-dark btn-block" (click)="onBookContinue()">Continue</button>
+        <button class="btn btn-danger btn-block" (click)="onReset()">Reset</button>
+    </div>
+  </div>
+
+  <div *ngIf="isContinueTicketReview">
+      <div class="legend-panel float-right text-right">
+        <p><strong>Book Seat{{selectedSeats.length > 2 ? 's' : ''}}:</strong> {{selectedSeats}}</p>
+        <p><strong>Sub total:</strong> {{totalPayLoad.subtotal | currency:'INR'}}</p>
+        <p><strong>Service Tax @14%:</strong> {{totalPayLoad.tax | currency:'INR'}}</p>
+        <p><strong>Swach Bharat Cess @0.5%:</strong> {{totalPayLoad.sbc | currency:'INR'}}</p>
+        <p><strong>Krishi Kalyan Cess @0.5%:</strong> {{totalPayLoad.kkc | currency:'INR'}}</p>
+      </div>
+  
+      <div class="legend-panel float-right text-right">
+        <h4>Total: {{totalPayLoad.total | currency:'INR'}}</h4>
+      </div>
+  
+      <div class="legend-panel action float-right text-right" *ngIf="isSeatSelected">
+        <p><button class="btn btn-primary btn-block" (click)="onBookNow()">Book Now</button></p>
+      </div>
+    </div>
+
 </section>

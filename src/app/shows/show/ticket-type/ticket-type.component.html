@@ -1,17 +1,22 @@
-<div class="seat-row platinum-row">
-  <h5>{{ticketTypeName}}</h5>
-  <!-- {{ticketTypeData | json}} -->
+<div *ngIf="ticketTypes.length !== 0">
+  <div class="seat-row {{ticket}}-row" *ngFor="let ticket of ticketTypes">
+    <h5 class="text-capitalize">{{ticket}}</h5>
+    <!-- {{ticketTypeData[ticket] | json}} -->
 
-  <!-- {{defaultSeats | json }} -->
+    <!-- {{defaultSeats | json }} -->
 
-  <ul class="seats-list">
-    <li *ngFor="let seat of defaultSeats; let i = index;">
-      <a style="cursor:pointer" class="seat" *ngIf="ticketTypeData.available_seats.includes(seat)"
-        [ngClass]="{'active': selectedSeat.includes(seat)}"
-        (click)="onSelectSeat(seat, ticketTypeData.rate)" data-rate="ticketTypeData.rate">{{seat}}</a>
+    <ul class="seats-list">
+      <li *ngFor="let seat of defaultSeats[ticket]; let i = index;">
 
-      <a style="cursor: default;" [ngClass]="{'seat booked-seat': !ticketTypeData.available_seats.includes(seat)}"
-        *ngIf="!ticketTypeData.available_seats.includes(seat)">{{defaultSeats[i]}}</a>
-    </li>
-  </ul>
+        <a style="cursor:pointer" class="seat" *ngIf="ticketTypeData[ticket].available_seats.includes(seat)"
+          [ngClass]="{'active': selectedSeat.includes(seat)}"
+          (click)="onSelectSeat(seat, ticketTypeData[ticket].rate)">{{seat}}</a>
+
+        <a style="cursor: default;"
+          [ngClass]="{'seat booked-seat': !ticketTypeData[ticket].available_seats.includes(seat)}"
+          *ngIf="!ticketTypeData[ticket].available_seats.includes(seat)">{{defaultSeats[ticket][i]}}</a>
+
+      </li>
+    </ul>
+  </div>
 </div>

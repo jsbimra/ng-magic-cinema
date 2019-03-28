@@ -4,7 +4,7 @@ import { CinemaService } from 'src/app/services/cinema.service';
 @Component({
   selector: 'app-show',
   templateUrl: './shows.component.html',
-  styleUrls: ['./shows.component.sass']
+  styleUrls: ['./shows.component.sass'],
 })
 export class ShowsComponent implements OnInit {
   shows = [];

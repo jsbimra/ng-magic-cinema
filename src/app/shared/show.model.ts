@@ -1,11 +1,11 @@
 import { Observable } from 'rxjs';
 
 export class TicketType {
-    constructor(public rate: number, public available_seats: any, public booked_seats: any) {}
+    constructor(public rate: number, public available_seats: any) {}
 }
 
 export class Seat {
-    constructor(public rate: number, public seat: any) {}
+    constructor(public seat: string, public rate: number) {}
 }
 
 export class Show {
@@ -20,4 +20,8 @@ export class Show {
             this.gold = gold;
             this.silver = silver;
         }
+}
+
+export class TotalPayLoad {
+    constructor(public total:number, public subtotal:number, public tax:number, public sbc:number, public kkc:number ) {}
 }
