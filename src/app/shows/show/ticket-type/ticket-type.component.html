@@ -6,9 +6,12 @@
 
   <ul class="seats-list">
     <li *ngFor="let seat of defaultSeats; let i = index;">
-      <a style="cursor:pointer">
-        {{ticketTypeData.available_seats[i] === seat ? seat : 'X'}}
-      </a>
+      <a style="cursor:pointer" class="seat" *ngIf="ticketTypeData.available_seats.includes(seat)"
+        [ngClass]="{'active': selectedSeat.includes(seat)}"
+        (click)="onSelectSeat(seat, ticketTypeData.rate)" data-rate="ticketTypeData.rate">{{seat}}</a>
+
+      <a style="cursor: default;" [ngClass]="{'seat booked-seat': !ticketTypeData.available_seats.includes(seat)}"
+        *ngIf="!ticketTypeData.available_seats.includes(seat)">{{defaultSeats[i]}}</a>
     </li>
   </ul>
 </div>

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { ShowComponent } from './shows/show/show.component';
 import { ShowsComponent } from './shows/shows.component';
+import { OwnerComponent } from './owner/owner.component';
 
 const routes: Routes = [
     {
@@ -17,6 +18,10 @@ const routes: Routes = [
     {
         path: 'shows/:id',
         component: ShowComponent,
+    },
+    {
+        path: 'owner',
+        component: OwnerComponent,
     },
     {
         path: '**',

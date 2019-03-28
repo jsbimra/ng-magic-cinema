@@ -1,7 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
+
+h3, h2, a {
+    color: rgb(139, 0, 81);
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.nav-pills .nav-link.active {
+    background: none;
+    border-radius: 0;
+    color: rgb(0, 111, 139);
+    font-weight: bold;
+    border-bottom: 2px solid rgb(0, 111, 139);
+}
 header {
-    padding: 30px;
+    padding: 30px 0 0;
+    margin-bottom: 5px;
 
     border-bottom: 1px solid lightblue;
 
@@ -15,12 +32,8 @@ header {
     }
 }
 
-h3, h2, a {
-    color: rgb(139, 0, 81);
-}
-
-a:hover {
-    text-decoration: none;
+nav > a {
+    color: rgb(6, 133, 175);
 }
 
 article {
@@ -72,7 +85,7 @@ article {
         width: 60%;
         // margin: 0 auto;
         float:left;
-        padding-bottom: 80px;
+        padding-bottom: 40px;
         margin-bottom:20px;
     
         position: relative;
@@ -95,6 +108,22 @@ article {
     & .legend-panel{
         width: 25%;
         font-size: 13px;
+
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid rgb(88, 212, 206);
+
+        &:last-child {
+            border: none;
+        }
+        & p {
+            margin-bottom: 8px;
+        }
+
+        & .seat{
+            margin-right:0;
+            vertical-align: middle;
+        }
     }
 }
 
@@ -112,21 +141,33 @@ article {
 
         & > a {
             display: block;
-            background: lightgrey;
-            color: black;
-            padding: 2px 5px;
-            margin: 0 5px;
-            border-radius: 3px;
-
-            &:hover {
-                background: rgb(243, 241, 241);
-            }
         }
+    }
+}
 
-        & > a.booked {
-            display: block;
-            background: darkgrey;
-            color: black;
-        }
+.seat {
+    display: inline-block;
+    background: lightgrey;
+    color: black;
+    padding: 2px 5px;
+    min-width: 15px;
+    min-height: 15px;
+    margin: 0 5px;
+    border-radius: 3px;
+    text-align: center;
+
+    &.active {
+        background: rgb(0, 223, 130);
+        color: white !important;
+    }
+}
+
+.booked-seat {
+    display: inline-block;
+    background: darkgrey;
+    color: #c7c6c6 !important;
+
+    &:hover {
+        background: darkgrey;
     }
 }

@@ -4,6 +4,10 @@ export class TicketType {
     constructor(public rate: number, public available_seats: any, public booked_seats: any) {}
 }
 
+export class Seat {
+    constructor(public rate: number, public seat: any) {}
+}
+
 export class Show {
     public name: string;
     public platinum: TicketType;
