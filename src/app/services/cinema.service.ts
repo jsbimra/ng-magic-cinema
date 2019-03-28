@@ -77,4 +77,19 @@ export class CinemaService {
   calculateTotal(subtotal: number, taxRate: number = 14, sbc: number = .5, kkc: number = .5) {
     return subtotal + ((subtotal * taxRate / 100) + (subtotal * sbc / 100) + (subtotal * kkc / 100));
   }
+
+  updateSeats(arrOfSelectedSeats: any, defaultSeats: any) {
+    this.currentShowData.subscribe(
+      show => {
+        for(const type of Object.keys(defaultSeats)) {
+          arrOfSelectedSeats.map( seat => {
+            const findIndex = show[type].available_seats.findIndex( seatX => seatX.trim() === seat.trim());
+            if(findIndex !== -1 && findIndex !== "undefined") {
+              show[type].available_seats.splice(findIndex, 1);
+            }
+          })
+        }
+      }
+    );
+  }
 }

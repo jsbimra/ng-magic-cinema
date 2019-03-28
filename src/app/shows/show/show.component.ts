@@ -15,7 +15,7 @@ import { CinemaService } from 'src/app/services/cinema.service';
 export class ShowComponent implements OnInit, OnDestroy {
   private subSeatsChanged: Subscription;
   private subTotalSub: Subscription;
-  private subCurrentShowData: Subscription;
+  // private subCurrentShowData: Subscription;
 
   totalPayLoad: TotalPayLoad;
   selectedShow: Show;
@@ -79,7 +79,7 @@ export class ShowComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subSeatsChanged.unsubscribe();
     this.subTotalSub.unsubscribe();
-    this.subCurrentShowData.unsubscribe();
+    // this.subCurrentShowData.unsubscribe();
   }
 
   onBookContinue() {
@@ -88,30 +88,22 @@ export class ShowComponent implements OnInit, OnDestroy {
 
   onBookNow() {
     console.log('On Book Now fired');
-    console.log('currentShowData with subscribe');
-    let updateShowData = null;
-    this.subCurrentShowData = this.cinemaService.currentShowData.subscribe(
-      show => {
-        console.log('during subscribe ');
-        const arrOfSelectedSeats = this.arrSelectedSeats;
-        console.log(show, arrOfSelectedSeats);
 
-        for(const type of Object.keys(this.defaultSeats)) {
-          arrOfSelectedSeats.map( seat => {
-            const findIndex = show[type].available_seats.findIndex( seatX => seatX.trim() === seat.trim());
-            console.log('findIndex', findIndex);
+    this.cinemaService.updateSeats(this.arrSelectedSeats, this.defaultSeats);
 
-            if(findIndex !== -1 && findIndex !== "undefined") {
-              show[type].available_seats.splice(findIndex, 1);
-            }
-            updateShowData = show;
-          })
-        }
-      },
-      err => console.log('currentShowData error: ', err),
-      () => console.log('subscribe complete ')
-    );
-    console.log('currentShowData after subscribe statement ', updateShowData);
+    // this.subCurrentShowData = this.cinemaService.currentShowData.subscribe(
+    //   show => {
+    //     const arrOfSelectedSeats = this.arrSelectedSeats;
+    //     for(const type of Object.keys(this.defaultSeats)) {
+    //       arrOfSelectedSeats.map( seat => {
+    //         const findIndex = show[type].available_seats.findIndex( seatX => seatX.trim() === seat.trim());
+    //         if(findIndex !== -1 && findIndex !== "undefined") {
+    //           show[type].available_seats.splice(findIndex, 1);
+    //         }
+    //       })
+    //     }
+    //   }
+    // );
 
   }
 
