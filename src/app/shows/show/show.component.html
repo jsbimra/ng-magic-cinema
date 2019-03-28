@@ -2,7 +2,7 @@
   <h3 class="text-capitalize">{{selectedShowName | hypenTransform:'remove' }}</h3>
 
   <div class="select-seat-panel">
-    <p>Select Seats</p>
+    <h5>Select Seats</h5>
     <!-- {{defaultSeats | json}} -->
 
     <app-ticket-type [defaultSeats]="defaultSeats" [ticketTypeData]="selectedShow">
@@ -13,14 +13,16 @@
   
   <div *ngIf="!isContinueTicketReview">
     <div class="legend-panel float-right text-right">
+      <h4>Price</h4>
       <p><strong>Platinum:</strong> Rs {{selectedShow.platinum.rate}}/person</p>
       <p><strong>Gold:</strong> Rs {{selectedShow.gold.rate}}/person</p>
       <p><strong>Silver:</strong> Rs {{selectedShow.silver.rate}}/person</p>
     </div>
 
     <div class="legend-panel float-right text-right">
-      <p><strong>Available:</strong> <span class="seat"></span></p>
-      <p><strong>Booked:</strong> <span class="seat booked-seat"></span></p>
+      <h4>Info</h4>
+      <p><strong>Available Ticket:</strong> <span class="seat"></span></p>
+      <p><strong>Booked Ticket:</strong> <span class="seat booked-seat"></span></p>
     </div>
 
     <div class="legend-panel action float-right text-right" *ngIf="isSeatSelected">

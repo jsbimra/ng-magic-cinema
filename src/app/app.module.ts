@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { HypenTransformPipe } from './hypen-transform.pipe';
 import { TicketTypeComponent } from './shows/show/ticket-type/ticket-type.component';
 import { OwnerComponent } from './owner/owner.component';
+import { TicketBookedComponent } from './shows/show/ticket-booked/ticket-booked.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { OwnerComponent } from './owner/owner.component';
     ShowComponent,
     HypenTransformPipe,
     TicketTypeComponent,
-    OwnerComponent
+    OwnerComponent,
+    TicketBookedComponent
   ],
   imports: [
     BrowserModule,

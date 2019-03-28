@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { Show, TotalPayLoad } from 'src/app/shared/show.model';
@@ -20,6 +20,7 @@ export class ShowComponent implements OnInit, OnDestroy {
   totalPayLoad: TotalPayLoad;
   selectedShow: Show;
   selectedShowName: string = '';
+  transformShowName: string;
   defaultSeats: any;
   isSeatSelected = false;
   isContinueTicketReview = false;
@@ -29,7 +30,8 @@ export class ShowComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private cinemaService: CinemaService,
-    private hypenTransform: HypenTransformPipe) {
+    private hypenTransform: HypenTransformPipe,
+    private router: Router) {
 
     this.selectedShowName = this.route.snapshot.paramMap.get('id');
     this.defaultSeats = this.cinemaService.getDefaultSeats();
@@ -37,13 +39,12 @@ export class ShowComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    const transformShowName = this.hypenTransform.transform(this.selectedShowName, 'remove');
-    this.cinemaService.getShowDetails(transformShowName);
+    this.transformShowName = this.hypenTransform.transform(this.selectedShowName, 'remove');
+    this.cinemaService.getShowDetails(this.transformShowName);
 
     this.cinemaService.currentShowData.subscribe(
       show => this.selectedShow = show
     );
-    console.log('selectedShow data', this.selectedShow);
 
     //Subscribe if seat selected
     this.subSeatsChanged = this.cinemaService.seatsChanged
@@ -88,23 +89,8 @@ export class ShowComponent implements OnInit, OnDestroy {
 
   onBookNow() {
     console.log('On Book Now fired');
-
     this.cinemaService.updateSeats(this.arrSelectedSeats, this.defaultSeats);
-
-    // this.subCurrentShowData = this.cinemaService.currentShowData.subscribe(
-    //   show => {
-    //     const arrOfSelectedSeats = this.arrSelectedSeats;
-    //     for(const type of Object.keys(this.defaultSeats)) {
-    //       arrOfSelectedSeats.map( seat => {
-    //         const findIndex = show[type].available_seats.findIndex( seatX => seatX.trim() === seat.trim());
-    //         if(findIndex !== -1 && findIndex !== "undefined") {
-    //           show[type].available_seats.splice(findIndex, 1);
-    //         }
-    //       })
-    //     }
-    //   }
-    // );
-
+    this.router.navigate(['ticket-booked', {seats: this.selectedSeats, show: this.transformShowName}]);
   }
 
   onReset() {

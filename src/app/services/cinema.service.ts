@@ -87,7 +87,7 @@ export class CinemaService {
             if(findIndex !== -1 && findIndex !== "undefined") {
               show[type].available_seats.splice(findIndex, 1);
             }
-          })
+          });
         }
       }
     );

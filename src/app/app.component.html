@@ -3,10 +3,9 @@
     <h1 class=" text-center">
       <a routerLink="/">{{ title }}!</a>
     </h1>
-
   </header>
 
-  <nav class="nav nav-pills nav-justified">
+  <nav  *ngIf="!isNavVisible" class="nav nav-pills nav-justified">
       <a class="nav-link nav-item" routerLinkActive="active" routerLink="/shows">Shows</a>
       <a class="nav-link nav-item" routerLinkActive="active" routerLink="/owner">Owner</a>
   </nav>

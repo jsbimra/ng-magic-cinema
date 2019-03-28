@@ -92,7 +92,7 @@ article {
         margin-bottom: 25px;
     }
 
-    & .select-seat-panel{
+    .select-seat-panel{
         width: 60%;
         // margin: 0 auto;
         float:left;
@@ -101,6 +101,8 @@ article {
     
         position: relative;
         border-bottom: 5px inset rgb(212, 212, 212);
+        // border-bottom-top-radius: 50%;
+        // border-bottom-right-radius: 50%;
     
         &:after {
             content: 'screen';

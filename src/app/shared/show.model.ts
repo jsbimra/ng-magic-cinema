@@ -8,6 +8,9 @@ export class Seat {
     constructor(public seat: string, public rate: number) {}
 }
 
+export class BookedData {
+    constructor(private seats: string, private show: string) {}
+}
 export class Show {
     public name: string;
     public platinum: TicketType;
