@@ -12,6 +12,7 @@ import { CinemaService } from 'src/app/services/cinema.service';
   styleUrls: ['./show.component.sass'],
   providers: [HypenTransformPipe]
 })
+
 export class ShowComponent implements OnInit, OnDestroy {
   private subSeatsChanged: Subscription;
   private subTotalSub: Subscription;
@@ -90,7 +91,21 @@ export class ShowComponent implements OnInit, OnDestroy {
   onBookNow() {
     console.log('On Book Now fired');
     this.cinemaService.updateSeats(this.arrSelectedSeats, this.defaultSeats);
-    this.router.navigate(['ticket-booked', {seats: this.selectedSeats, show: this.transformShowName}]);
+    this.router.navigate(['ticket-booked', { seats: this.selectedSeats, show: this.transformShowName }]);
+    console.log(this.totalPayLoad);
+
+    let revenueTotal: number = 0;
+    this.cinemaService.getRevenueGenerated()
+      .subscribe(
+        total => {
+          revenueTotal = total + this.totalPayLoad.total;
+
+          console.log(total);
+        }
+      );
+
+    this.cinemaService.setTotalRevenue(revenueTotal);
+
   }
 
   onReset() {

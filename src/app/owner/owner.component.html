@@ -1,6 +1,12 @@
-<section class="text-center owner-component">
-  <button class="btn btn-info btn-block">Print Total Revenue</button>
-  <div class="total-revenue">
+<section class=" owner-component">
+  <button class="btn btn-info btn-block" (click)="onReveuneGenerate()">Print Total Revenue</button>
 
+  <div class="total-revenue">
+    <h3>Total Sale</h3>
+    {{revenuePayLoad}}
+    <h4>Revenue: {{revenuePayLoad.total}}</h4>
+    <h4>Service Tax: {{revenuePayLoad.tax}}</h4>
+    <h4>Swachh Bharat Cess: {{revenuePayLoad.sbc}}</h4>
+    <h4>Krishi Kalyan Cess: {{revenuePayLoad.kkc}}</h4>
   </div>
 </section>

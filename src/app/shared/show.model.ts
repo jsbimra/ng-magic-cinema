@@ -28,3 +28,6 @@ export class Show {
 export class TotalPayLoad {
     constructor(public total:number, public subtotal:number, public tax:number, public sbc:number, public kkc:number ) {}
 }
+export class RevenuePayloadType {
+    constructor(public total:number, public tax:number, public sbc:number, public kkc:number ) {}
+}

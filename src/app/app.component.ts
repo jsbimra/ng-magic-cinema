@@ -10,19 +10,15 @@ export class AppComponent implements OnInit {
   title = 'TechVerito Cinema';
   isNavVisible = true;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
-
-  }
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
 
     this.router.events.subscribe((route: any) => {
 
       if (route.url && route.url.indexOf('ticket-booked') !== -1) {
-        console.log(' !== ', route.url);
         this.isNavVisible = false;
       } else {
-        console.log(' else ', route.url);
         this.isNavVisible = true;
       }
     });
