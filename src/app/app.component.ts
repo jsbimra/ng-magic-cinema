@@ -12,19 +12,19 @@ export class AppComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router) {
 
-    router.events.subscribe((route: any) => {
-
-      if(route.url && route.url.indexOf('ticket-booked') !== -1) {
-      console.log();
-      this.isNavVisible = false;
-      } else {
-      console.log(route.url);
-      this.isNavVisible = true;
-      }
-    });
   }
 
   ngOnInit() {
 
+    this.router.events.subscribe((route: any) => {
+
+      if (route.url && route.url.indexOf('ticket-booked') !== -1) {
+        console.log(' !== ', route.url);
+        this.isNavVisible = false;
+      } else {
+        console.log(' else ', route.url);
+        this.isNavVisible = true;
+      }
+    });
   }
 }
