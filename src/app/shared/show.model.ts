@@ -9,7 +9,7 @@ export class Seat {
 }
 
 export class BookedData {
-    constructor(seats: string, show: string) {}
+    constructor(public seats: string, public show: string) {}
 }
 export class Show {
     public name: string;

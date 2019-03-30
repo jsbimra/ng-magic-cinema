@@ -80,15 +80,15 @@ export class CinemaService {
   }
 
   calculateTotal(subtotal: number, taxRate: number = this.taxRate, sbc: number = this.sbc, kkc: number = this.kkc) {
-    return subtotal + ((subtotal * taxRate / 100) + (subtotal * sbc / 100) + (subtotal * kkc / 100));
+    return subtotal + (Math.floor((subtotal * taxRate / 100)) + Math.floor((subtotal * sbc / 100)) + Math.floor((subtotal * kkc / 100)) );
   }
 
   getTotalRevenue(total: number) {
     return {
       total,
-      tax: total - (total * this.taxRate/100),
-      sbc: total - (total * this.sbc/100),
-      kkc: total - (total * this.kkc/100)
+      tax: total - Math.floor((total * this.taxRate/100)),
+      sbc: total - Math.floor((total * this.sbc/100)),
+      kkc: total - Math.floor((total * this.kkc/100))
     }
   }
 
