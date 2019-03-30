@@ -117,6 +117,6 @@ export class CinemaService {
 
   roundDigits(value:any, places:any) {
     /// TS_IGNORE         
-    return +(Math.round(value + "e+" + places) + "e-" + places);
+    return +(Math.round(Number(value + "e+" + places)) + "e-" + places);
   }
 }
