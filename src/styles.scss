@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-h3, h2, a {
+h3, a {
     color: rgb(139, 0, 81);
+}
+
+h2 {
+    color: wheat;
+    margin-bottom: 25px;
 }
 
 a:hover {
@@ -170,8 +175,8 @@ article {
     text-align: center;
 
     &.active {
-        background: rgb(0, 223, 130);
-        color: white !important;
+        background: wheat; // rgb(0, 223, 130);
+        color: rgb(255, 255, 255) !important;
     }
 }
 

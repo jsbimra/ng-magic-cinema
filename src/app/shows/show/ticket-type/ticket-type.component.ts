@@ -48,7 +48,7 @@ export class TicketTypeComponent implements OnInit, OnDestroy {
     // console.log(seat, rate);
 
     if (seat && rate) {
-      console.log('is seat selected? ', this.isSeatSelected);
+      // console.log('is seat selected? ', this.isSeatSelected);
 
       if (!this.selectedSeat.includes(seat)) {
         this.selectedSeat.push(seat);

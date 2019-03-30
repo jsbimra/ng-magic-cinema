@@ -11,13 +11,15 @@ import { RevenuePayloadType } from '../shared/show.model';
 export class OwnerComponent implements OnInit, OnDestroy {
   // private subRevenueGen: Subscription;
 
+  isRevenuePayLoadReady: boolean = false;
   revenuePayLoad: RevenuePayloadType;
 
   constructor(private cinemaService: CinemaService) { }
 
   ngOnInit() { 
     console.log(this.revenuePayLoad);
-    this.revenuePayLoad = new RevenuePayloadType(0, 0, 0, 0)
+    this.revenuePayLoad = new RevenuePayloadType(0, 0, 0, 0);
+    this.onReveuneGenerate();
   }
 
   ngOnDestroy() {
@@ -29,10 +31,14 @@ export class OwnerComponent implements OnInit, OnDestroy {
     this.cinemaService.getRevenueGenerated()
       .subscribe(
         total => {
-          console.log(total);
-          console.log(this.cinemaService.getTotalRevenue(total));
           this.revenuePayLoad = this.cinemaService.getTotalRevenue(total);
           console.log(this.revenuePayLoad);
+
+          if(this.revenuePayLoad.total !== 0) {
+            this.isRevenuePayLoadReady = true;
+          } else {
+            this.isRevenuePayLoadReady = false;
+          }
         }
       )
   }

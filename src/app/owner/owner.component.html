@@ -1,12 +1,20 @@
 <section class=" owner-component">
-  <button class="btn btn-info btn-block" (click)="onReveuneGenerate()">Print Total Revenue</button>
 
-  <div class="total-revenue">
-    <h3>Total Sale</h3>
-    {{revenuePayLoad}}
-    <h4>Revenue: {{revenuePayLoad.total}}</h4>
-    <h4>Service Tax: {{revenuePayLoad.tax}}</h4>
-    <h4>Swachh Bharat Cess: {{revenuePayLoad.sbc}}</h4>
-    <h4>Krishi Kalyan Cess: {{revenuePayLoad.kkc}}</h4>
+    <h2>Welcome Owner</h2>
+  
+  <p class="alert alert-warning" *ngIf="!isRevenuePayLoadReady">
+    No revenue's, for older bookings, please make a fresh multiple bookings, and come back here!
+    Thanks!
+  </p>
+
+  <div class="total-revenue" *ngIf="isRevenuePayLoadReady">
+  <!-- <button class="btn btn-info btn-block" (click)="onReveuneGenerate()">Check Total Revenue</button> -->
+
+    <h3>Total Sale's</h3>
+    <!-- {{revenuePayLoad | json}} -->
+    <h4>Revenue: {{revenuePayLoad.total | currency:'INR'}}</h4>
+    <h4>Service Tax: {{revenuePayLoad.tax | currency:'INR'}}</h4>
+    <h4>Swachh Bharat Cess: {{revenuePayLoad.sbc | currency:'INR'}}</h4>
+    <h4>Krishi Kalyan Cess: {{revenuePayLoad.kkc | currency:'INR'}}</h4>
   </div>
 </section>

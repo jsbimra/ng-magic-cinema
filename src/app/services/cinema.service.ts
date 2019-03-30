@@ -80,15 +80,15 @@ export class CinemaService {
   }
 
   calculateTotal(subtotal: number, taxRate: number = this.taxRate, sbc: number = this.sbc, kkc: number = this.kkc) {
-    return subtotal + (Math.floor((subtotal * taxRate / 100)) + Math.floor((subtotal * sbc / 100)) + Math.floor((subtotal * kkc / 100)) );
+    return subtotal + (Math.abs((subtotal * taxRate / 100)) + Math.abs((subtotal * sbc / 100)) + Math.abs((subtotal * kkc / 100)));
   }
 
   getTotalRevenue(total: number) {
     return {
       total,
-      tax: total - Math.floor((total * this.taxRate/100)),
-      sbc: total - Math.floor((total * this.sbc/100)),
-      kkc: total - Math.floor((total * this.kkc/100))
+      tax: this.roundDigits(total - (total - Math.abs((total * this.taxRate / 100))), 2),
+      sbc: this.roundDigits(total - (total - Math.abs((total * this.sbc / 100))), 2),
+      kkc: this.roundDigits(total - (total - Math.abs((total * this.kkc / 100))), 2)
     }
   }
 
@@ -108,10 +108,14 @@ export class CinemaService {
   }
 
   setTotalRevenue(total) {
-      this.revenueGenerated.next(total);
+    this.revenueGenerated.next(total);
   }
 
   getRevenueGenerated(): Observable<any> {
     return this.revenueGenerated.asObservable()
+  }
+
+  roundDigits(value:any, places:any) {
+    return +(Math.round(value + "e+" + places) + "e-" + places);
   }
 }
