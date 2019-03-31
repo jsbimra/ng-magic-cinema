@@ -6,7 +6,7 @@ describe('HypenTransformPipe', () => {
     expect(pipe).toBeTruthy();
   });
 
-  it('should transform to hypen case', () => {
+  it('should transform to hypen case word', () => {
     const pipe = new HypenTransformPipe();
     expect(pipe.transform('Drama Show')).toEqual('drama-show');
   });

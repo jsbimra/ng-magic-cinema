@@ -8,11 +8,6 @@ import { TicketBookedComponent } from './shows/show/ticket-booked/ticket-booked.
 
 const routes: Routes = [
     {
-        path: '',
-        redirectTo: 'shows',
-        pathMatch: 'full',
-    },
-    {
         path: 'shows',
         component: ShowsComponent,
     },
@@ -27,6 +22,11 @@ const routes: Routes = [
     {
         path: 'ticket-booked',
         component: TicketBookedComponent,
+    },
+    {
+        path: '',
+        redirectTo: 'shows',
+        pathMatch: 'full',
     },
     {
         path: '**',
