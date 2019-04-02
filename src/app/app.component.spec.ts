@@ -79,8 +79,15 @@ describe('AppComponent', () => {
       await router.navigate(['']);
     });
     
-    console.log(location.path());
     expect(location.path()).toBe('/shows');
+  });
+
+  it('navigate to /owner', async () => {
+    await fixture.ngZone.run(async () => {
+      await router.navigate(['/owner']);
+    });
+    
+    expect(location.path()).toBe('/owner');
   });
 
   it('should render title in a anchor tag inside h1', () => {
