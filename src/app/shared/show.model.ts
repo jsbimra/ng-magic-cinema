@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 export class TicketType {
     constructor(public rate: number, public available_seats: any) {}
 }
-
 export class Seat {
     constructor(public seat: string, public rate: number) {}
 }

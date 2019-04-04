@@ -7,10 +7,12 @@ export class HypenTransformPipe implements PipeTransform {
 
   transform(value: any, format?: string): any {
     let newValue = value;
-    if(format === 'remove') {
-      newValue = value.replace('-',' ');
-    } else {
-      newValue = value.toLowerCase().replace(' ','-');
+    if (value && value !== '') {
+      if (format === 'remove') {
+        newValue = value.replace('-', ' ');
+      } else {
+        newValue = value.toLowerCase().replace(' ', '-');
+      }
     }
 
     return newValue;

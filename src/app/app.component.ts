@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'TechVerito Cinema';
+  title = 'Magic Cinema';
   isNavVisible = true;
 
   constructor(private route: ActivatedRoute, private router: Router) {}

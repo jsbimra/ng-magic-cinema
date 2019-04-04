@@ -36,7 +36,6 @@ export class ShowComponent implements OnInit, OnDestroy {
 
     this.selectedShowName = this.route.snapshot.paramMap.get('id');
     this.defaultSeats = this.cinemaService.getDefaultSeats();
-
   }
 
   ngOnInit() {

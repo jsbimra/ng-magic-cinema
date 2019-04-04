@@ -1,16 +1,15 @@
 <section class="show-detail-section">
   <h3 class="text-capitalize">{{selectedShowName | hypenTransform:'remove' }}</h3>
 
-  <div class="select-seat-panel">
-    <h5>Select Seats</h5>
-    <!-- {{defaultSeats | json}} -->
+  <!-- {{defaultSeats | json}} -->
 
+  <!-- <div class="select-seat-panel">
+    <h5>Select Seats</h5>
     <app-ticket-type [defaultSeats]="defaultSeats" [ticketTypeData]="selectedShow">
     </app-ticket-type>
+  </div> -->
 
-  </div>
-
-  
+  <!-- 
   <div *ngIf="!isContinueTicketReview">
     <div class="legend-panel float-right text-right">
       <h4>Price</h4>
@@ -27,27 +26,27 @@
     </div>
 
     <div class="legend-panel action float-right text-right" *ngIf="isSeatSelected">
-        <button class="btn btn-dark btn-block" (click)="onBookContinue()">Continue</button>
-        <button class="btn btn-outline-info btn-block" (click)="onReset()">Reset</button>
+      <button class="btn btn-dark btn-block" (click)="onBookContinue()">Continue</button>
+      <button class="btn btn-outline-info btn-block" (click)="onReset()">Reset</button>
     </div>
   </div>
 
   <div *ngIf="isContinueTicketReview">
-      <div class="legend-panel float-right text-right">
-        <p><strong>Book Seat{{selectedSeats.length > 2 ? 's' : ''}}:</strong> {{selectedSeats}}</p>
-        <p><strong>Sub total:</strong> {{totalPayLoad.subtotal | currency:'INR'}}</p>
-        <p><strong>Service Tax @14%:</strong> {{totalPayLoad.tax | currency:'INR'}}</p>
-        <p><strong>Swach Bharat Cess @0.5%:</strong> {{totalPayLoad.sbc | currency:'INR'}}</p>
-        <p><strong>Krishi Kalyan Cess @0.5%:</strong> {{totalPayLoad.kkc | currency:'INR'}}</p>
-      </div>
-  
-      <div class="legend-panel float-right text-right">
-        <h4>Total: {{totalPayLoad.total | currency:'INR'}}</h4>
-      </div>
-  
-      <div class="legend-panel action float-right text-right" *ngIf="isSeatSelected">
-        <p><button class="btn btn-primary btn-block" (click)="onBookNow()">Book Now</button></p>
-      </div>
+    <div class="legend-panel float-right text-right">
+      <p><strong>Book Seat{{selectedSeats.length > 2 ? 's' : ''}}:</strong> {{selectedSeats}}</p>
+      <p><strong>Sub total:</strong> {{totalPayLoad.subtotal | currency:'INR'}}</p>
+      <p><strong>Service Tax @14%:</strong> {{totalPayLoad.tax | currency:'INR'}}</p>
+      <p><strong>Swach Bharat Cess @0.5%:</strong> {{totalPayLoad.sbc | currency:'INR'}}</p>
+      <p><strong>Krishi Kalyan Cess @0.5%:</strong> {{totalPayLoad.kkc | currency:'INR'}}</p>
     </div>
+
+    <div class="legend-panel float-right text-right">
+      <h4>Total: {{totalPayLoad.total | currency:'INR'}}</h4>
+    </div>
+
+    <div class="legend-panel action float-right text-right" *ngIf="isSeatSelected">
+      <p><button class="btn btn-primary btn-block" (click)="onBookNow()">Book Now</button></p>
+    </div>
+  </div> -->
 
 </section>

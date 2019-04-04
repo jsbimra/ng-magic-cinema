@@ -11,7 +11,7 @@ describe('HypenTransformPipe', () => {
     expect(pipe.transform('Drama Show')).toEqual('drama-show');
   });
 
-  it(`should do oppositie of tranform to hypen-case word with remove param`, ()=> {
+  it(`should do opposite of tranform to hypen-case word with remove param`, ()=> {
     const pipe = new HypenTransformPipe();
     console.log(pipe);
     expect(pipe.transform('drama-show', 'remove')).toEqual('drama show')

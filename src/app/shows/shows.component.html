@@ -1,8 +1,8 @@
 <section class="shows-container">
   <ul class="shows-list">
     <li *ngFor="let show of shows; let id = index">
-      <!-- <a routerLink="{{show.name | hypenTransform }}">TESTCASE To fail</a> -->
-      <a class="show-link"  [routerLink]="['shows',  show.name | hypenTransform]">{{show.name}}</a>
+      <!-- <a routerLink="{{show.name | hypenTransform }}">this syntax Causing SPECS to fail</a> -->
+      <a class="show-link"  [routerLink]="[show.name | hypenTransform]">{{show.name}}</a>
       <!-- <a class="show-link" routerLink="{{show.name | hypenTransform }}">{{show.name}}</a> -->
     </li>
   </ul>

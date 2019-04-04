@@ -1,9 +1,8 @@
-import { TestBed, async, ComponentFixture, fakeAsync, flush } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture, fakeAsync, flush, tick } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { tick } from '@angular/core/src/render3';
 
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
@@ -39,8 +38,6 @@ describe('AppComponent', () => {
 
     router = TestBed.get(Router);
     location = TestBed.get(Location);
-    //initialize routing
-    router.initialNavigation();
 
   }));
   beforeEach(() => {
@@ -48,16 +45,16 @@ describe('AppComponent', () => {
     app = fixture.componentInstance;
     fixture.detectChanges();
 
+    //initialize routing
+    router.initialNavigation();
+    
     //After detectChanges grap the element or construtor initial values
     navDebugElement = fixture.debugElement.queryAll(By.css('.nav-link.nav-item'));
+    
   });
 
   it('should create the app', () => {
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'TechVerito Cinema'`, () => {
-    expect(app.title).toEqual('TechVerito Cinema');
   });
 
   it(`should have isNavVisible property to be true by default`, () => {
@@ -74,26 +71,48 @@ describe('AppComponent', () => {
   // }) ); 
   //failing
 
-  it('navigate to "" redirects to /shows', async () => {
-    await fixture.ngZone.run(async () => {
-      await router.navigate(['']);
-    });
-    
-    expect(location.path()).toBe('/shows');
-  });
+  // it('navigate to "" redirects to /shows', async () => {
+  //   console.log(location.path());
 
-  it('navigate to /owner', async () => {
-    await fixture.ngZone.run(async () => {
-      await router.navigate(['/owner']);
-    });
-    
+  //   await fixture.ngZone.run(async () => {
+  //     await router.navigate(['']);
+  //   });
+
+  //   expect(location.path()).toBe('/shows');
+  // });
+  //other way of doing it
+
+  it('navigate to "" redirects to /shows', fakeAsync(() => {
+    router.navigate(['']);
+    tick();
+    console.log('NAVIAGTE ASSERT: current route path', location.path());
+    expect(location.path()).toBe('/shows');
+  }));
+
+  // it('navigate to /owner', async () => {
+  //   await fixture.ngZone.run(async () => {
+  //     await router.navigate(['/owner']);
+  //   });
+  //   expect(location.path()).toBe('/owner');
+  // });
+  //other way
+
+  it('navigate to /owner', fakeAsync(() => {
+    router.navigate(['/owner']);
+    tick();
+    console.log('NAVIAGTE ASSERT: current route path', location.path());
     expect(location.path()).toBe('/owner');
+  }));
+
+  it(`should have app title as 'Magic Cinema'`, () => {
+    expect(app.title).toEqual('Magic Cinema');
   });
 
   it('should render title in a anchor tag inside h1', () => {
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1 a').textContent).toContain('TechVerito Cinema');
+    expect(compiled.querySelector('h1 a').textContent).toContain(app.title);
   });
+  
 
   it('should have nav links items matched inside .nav-links.nav-items', () => {
     const nav = ['Shows', 'Owner'];
@@ -101,7 +120,6 @@ describe('AppComponent', () => {
     navDebugElement.map((ele, idx) => {
       // console.log('debugelement value ', ele.nativeElement);
       expect(ele.nativeElement.textContent).toEqual(nav[idx]);
-
     });
   });
 
