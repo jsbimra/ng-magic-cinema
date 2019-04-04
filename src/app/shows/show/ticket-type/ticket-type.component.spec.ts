@@ -16,8 +16,7 @@ describe('TicketTypeComponent', () => {
         ShowComponent,
         HypenTransformPipe],
       imports: [RouterTestingModule]
-    })
-      .compileComponents();
+    });
   }));
 
   beforeEach(() => {

@@ -42,7 +42,6 @@ describe('ShowComponent', () => {
     router = TestBed.get(Router);
     location = TestBed.get(Location);
 
-
   }));
 
   beforeEach(() => {
@@ -60,33 +59,47 @@ describe('ShowComponent', () => {
   });
 
   it('should create show comp instance', () => {
+    console.log('<<<<< SPEC SHOW COMP: should 1 >>>>>>>>');
     expect(comp).toBeTruthy();
   });
 
   it('should navigate to first show i.e comedy-show', fakeAsync(() => {
-    console.log('SPEC SHOW COMP ROUTER: navigate  ', router.url);
-    console.log('SPEC SHOW COMP LOCATION PATH: navigate ', location.path());
+    console.log('<<<<< SPEC SHOW COMP: should 2 >>>>>>>>');
     router.navigate(['shows', 'comedy-show']);
     tick();
+    fixture.detectChanges();
     console.log('SPEC SHOW COMP LOCATION PATH: navigate ', location.path());
 
     expect(location.path()).toBe('/shows/comedy-show');
   }));
 
+  it('should get default seats from service and not be null or empty', () => {
+    console.log('<<<<< SPEC SHOW COMP: should 3 >>>>>>>>');
+    let defaultSeats = cs.getDefaultSeats();
+    console.log('SHOW COMP: Default Seats ', defaultSeats);
+    expect(defaultSeats).not.toBeUndefined();
+  });
+  
+  it('should have show name transformed without hypen character', () => {
+    console.log('<<<<< SPEC SHOW COMP: should 4 >>>>>>>>');
+    comp.selectedShowName = "comedy-show";
+    let showName = hypenPipe.transform(comp.selectedShowName, 'remove');
+    expect(showName).toEqual("comedy show");
+  });
 
+  it('should display show-name in h3 tag on screen', () => {
+    console.log('<<<<< SPEC SHOW COMP: should 5 >>>>>>>>');
+    comp.selectedShowName = "comedy-show";
+    fixture.detectChanges();
+    titleDebugElement = fixture.debugElement.query(By.css('h3'));
+    console.log('SPEC SHOW COMP: ', titleDebugElement.nativeElement);
+    expect(titleDebugElement.nativeElement.textContent).toEqual("comedy show");
+  });
 
-  // it('should have show name transformed and display in h3 tag of view', fakeAsync(() => {
-  //   router.navigate(['/comedy-show', {relativeTo: 'shows'}]);
-  //   tick();
-  //   console.log('SPEC SHOW COMP: router ', router.url);
-  //   comp.selectedShowName = "comedy-show";
+  it('should subscribe to current show and set to selectedShow variable ', fakeAsync(() => {
+    cs.currentShowData.subscribe(
+      show => comp.selectedShow = show
+    );
+  }));
 
-  //   let showName = hypenPipe.transform(comp.selectedShowName, 'remove');
-  //   expect(showName).toEqual("comedy show");
-
-  //   titleDebugElement = fixture.debugElement.query(By.css('h3'));
-  //   console.log('SPEC SHOW COMP: ', titleDebugElement.nativeElement.textContent);
-
-  //   // expect(titleDebugElement.nativeElement.textContent).toContain("comedy show");
-  // }) );
 });
