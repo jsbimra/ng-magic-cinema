@@ -43,7 +43,10 @@ export class ShowComponent implements OnInit, OnDestroy {
     this.cinemaService.getShowDetails(this.transformShowName);
 
     this.cinemaService.currentShowData.subscribe(
-      show => this.selectedShow = show
+      show => {
+        console.log('show ', show);
+        this.selectedShow = show
+      }
     );
 
     //Subscribe if seat selected

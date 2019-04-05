@@ -1,3 +1,5 @@
+<!-- {{ticketTypeData | json}} -->
+
 <div *ngIf="ticketTypes.length !== 0">
   <div class="seat-row {{ticket}}-row" *ngFor="let ticket of ticketTypes">
     <h5 class="text-capitalize">{{ticket}}</h5>

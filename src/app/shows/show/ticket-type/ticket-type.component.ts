@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { TicketType, Seat } from 'src/app/shared/show.model';
+import { TicketType, Seat, Show } from 'src/app/shared/show.model';
 import { CinemaService } from 'src/app/services/cinema.service';
 import { Subscription } from 'rxjs';
 
@@ -13,7 +13,7 @@ export class TicketTypeComponent implements OnInit, OnDestroy {
 
   private subSeatsChanged: Subscription;
 
-  @Input() ticketTypeData: TicketType;
+  @Input() ticketTypeData: Show;
 
   ticketTypes: any = [];
   defaultSeats: any = [];
