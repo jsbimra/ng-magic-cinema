@@ -14,20 +14,19 @@ export class TicketTypeComponent implements OnInit, OnDestroy {
   private subSeatsChanged: Subscription;
 
   @Input() ticketTypeData: TicketType;
-  @Input() defaultSeats: any;
 
   ticketTypes: any = [];
   isSeatSelected = false;
   selectedSeat = [];
   selectedSeatRates = [];
 
-  constructor(private cinemaService: CinemaService) { }
+  constructor(private cs: CinemaService) { }
 
   ngOnInit() {
     //Get the keys out of types of seats to create ticket types
-    this.ticketTypes.push(...Object.keys(this.defaultSeats));
+    this.ticketTypes.push(...Object.keys(this.cs.getDefaultSeats()));
 
-    this.subSeatsChanged = this.cinemaService.seatsChanged
+    this.subSeatsChanged = this.cs.seatsChanged
       .subscribe(
         seats => {
           if (!seats.length) {
@@ -63,12 +62,12 @@ export class TicketTypeComponent implements OnInit, OnDestroy {
       }
 
       //update seatsChanged subject with new selected seats
-      this.cinemaService.seatsChanged.next(this.selectedSeat.slice());
+      this.cs.seatsChanged.next(this.selectedSeat.slice());
 
       //calculate subtotal of selected seats
       const subTotal = this.selectedSeatRates.reduce((total, rate) => total + rate, 0);
       //update sub total subject with total
-      this.cinemaService.seatsSubTotal.next(subTotal);
+      this.cs.seatsSubTotal.next(subTotal);
 
     }
 

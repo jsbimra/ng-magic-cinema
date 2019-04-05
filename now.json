@@ -1,9 +1,9 @@
 {
   "version": 2,
   "public": true,
-  "name": "ng-techverito",
+  "name": "ng-magic-cinema",
   "alias": [
-    "ngTechVerito"
+    "ngMagicCinema"
   ],
   "github": {
     "autoAlias": true
