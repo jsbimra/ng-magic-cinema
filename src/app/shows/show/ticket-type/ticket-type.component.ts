@@ -16,6 +16,7 @@ export class TicketTypeComponent implements OnInit, OnDestroy {
   @Input() ticketTypeData: TicketType;
 
   ticketTypes: any = [];
+  defaultSeats: any = [];
   isSeatSelected = false;
   selectedSeat = [];
   selectedSeatRates = [];
@@ -25,6 +26,8 @@ export class TicketTypeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     //Get the keys out of types of seats to create ticket types
     this.ticketTypes.push(...Object.keys(this.cs.getDefaultSeats()));
+    
+    this.defaultSeats = this.cs.getDefaultSeats();
 
     this.subSeatsChanged = this.cs.seatsChanged
       .subscribe(

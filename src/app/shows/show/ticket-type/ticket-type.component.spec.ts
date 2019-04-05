@@ -4,10 +4,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ShowComponent } from '../show.component';
 import { HypenTransformPipe } from '../../../hypen-transform.pipe';
 import { TicketTypeComponent } from './ticket-type.component';
+import { CinemaService } from 'src/app/services/cinema.service';
 
 describe('TicketTypeComponent', () => {
-  let component: TicketTypeComponent;
+  let comp: TicketTypeComponent;
   let fixture: ComponentFixture<TicketTypeComponent>;
+  let cs: CinemaService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -15,17 +17,21 @@ describe('TicketTypeComponent', () => {
         TicketTypeComponent,
         ShowComponent,
         HypenTransformPipe],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule],
+      providers: [CinemaService]
     });
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TicketTypeComponent);
-    component = fixture.componentInstance;
+    comp = fixture.componentInstance;
+    cs = fixture.debugElement.injector.get(CinemaService);
+
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    
+    expect(comp).toBeTruthy();
+  });
 });

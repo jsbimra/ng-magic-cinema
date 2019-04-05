@@ -1,12 +1,9 @@
 <section class="show-detail-section">
   <h3 class="text-capitalize">{{selectedShowName | hypenTransform:'remove' }}</h3>
 
-  <!-- {{defaultSeats | json}} -->
-
   <div class="select-seat-panel">
     <h5>Select Seats</h5>
-    <app-ticket-type [ticketTypeData]="selectedShow">
-    </app-ticket-type>
+    <app-ticket-type [ticketTypeData]="selectedShow"></app-ticket-type>
   </div>
 
   <!-- 

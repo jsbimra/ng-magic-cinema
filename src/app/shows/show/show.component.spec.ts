@@ -76,12 +76,13 @@ describe('ShowComponent', () => {
   it('should get default seats from service and not be null or empty', () => {
     console.log('<<<<< SPEC SHOW COMP: should 3 >>>>>>>>');
     let defaultSeats = cs.getDefaultSeats();
-    console.log('SHOW COMP: Default Seats ', defaultSeats);
+    // console.log('SHOW COMP: Default Seats ', defaultSeats);
     expect(defaultSeats).not.toBeUndefined();
   });
   
   it('should have show name transformed without hypen character', () => {
     console.log('<<<<< SPEC SHOW COMP: should 4 >>>>>>>>');
+    comp.defaultSeats = cs.getDefaultSeats();
     comp.selectedShowName = "comedy-show";
     let showName = hypenPipe.transform(comp.selectedShowName, 'remove');
     expect(showName).toEqual("comedy show");
