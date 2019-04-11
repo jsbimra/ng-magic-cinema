@@ -67,22 +67,22 @@ describe(`ShowComponent`, () => {
         available_seats: ['C2', 'C3', 'C4', 'C5', 'C6', 'C7'],
       });
 
-    fixture.detectChanges();
+    count +=1;
 
+    fixture.detectChanges(); //important for each it data should bind before
     router.initialNavigation();
 
     // showsNavElement = fixture.debugElement.queryAll(By.css('.show-link'));
     // showsNavElement[0].triggerEventHandler('click', null);
 
-    count++;
   });
 
-  it(`should ${count} create show comp instance`, () => {
+  it(`should ${count+1} create show comp instance`, () => {
     console.log(`<<<<< SPEC SHOW COMP: should ${count} >>>>>>>>`);
     expect(comp).toBeTruthy();
   });
 
-  it(`should ${count} navigate to first show i.e comedy-show`, fakeAsync(() => {
+  it(`should ${count+1} navigate to first show i.e comedy-show`, fakeAsync(() => {
     console.log(`<<<<< SPEC SHOW COMP: should ${count} >>>>>>>>`);
     router.navigate(['shows', 'comedy-show']);
     tick();
