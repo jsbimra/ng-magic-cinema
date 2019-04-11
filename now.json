@@ -1,9 +1,9 @@
 {
   "version": 2,
   "public": true,
-  "name": "ng-redux-magic-cinema",
+  "name": "ng-magic-cinema",
   "alias": [
-    "ngReduxMagicCinema"
+    "ngMagicCinema"
   ],
   "github": {
     "autoAlias": true
