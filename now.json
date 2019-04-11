@@ -3,7 +3,7 @@
   "public": true,
   "name": "ng-redux-magic-cinema",
   "alias": [
-    "ngMagicCinema"
+    "ngReduxMagicCinema"
   ],
   "github": {
     "autoAlias": true
