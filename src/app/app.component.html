@@ -1,16 +1,19 @@
 <div class="container">
-  <header>
+  <header class="pb-2 mb-3">
     <h1 class=" text-center">
       <a routerLink="/">{{ title }}!</a>
     </h1>
+
+    <button class="btn btn-sm btn-primary d-inline mr-1" (click)="incrementLike()" >Like</button>
+    <span class="float-right" *ngIf="(likeCounter | async)>0">Likes: {{likeCounter | async}}</span>
   </header>
 
-  <nav  class="nav nav-pills nav-justified">
-      <a class="nav-link nav-item" routerLinkActive="active" routerLink="/shows">Shows</a>
-      <a class="nav-link nav-item" routerLinkActive="active" routerLink="/owner">Owner</a>
+
+  <nav class="nav nav-pills nav-justified">
+    <a class="nav-link nav-item" routerLinkActive="active" routerLink="/shows">Shows</a>
+    <a class="nav-link nav-item" routerLinkActive="active" routerLink="/owner">Owner</a>
   </nav>
   <article>
-
     <router-outlet></router-outlet>
   </article>
 </div>

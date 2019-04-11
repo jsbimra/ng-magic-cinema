@@ -11,7 +11,7 @@ import { HypenTransformPipe } from './hypen-transform.pipe';
 import { TicketTypeComponent } from './shows/show/ticket-type/ticket-type.component';
 import { OwnerComponent } from './owner/owner.component';
 import { TicketBookedComponent } from './shows/show/ticket-booked/ticket-booked.component';
-import { McAppState, rootReducer } from './store';
+import { McAppState, rootReducer, initialState } from './store';
 
 
 @NgModule({
@@ -33,7 +33,7 @@ import { McAppState, rootReducer } from './store';
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  constructor(store: NgRedux<McAppState>) {
-    store.configureStore(rootReducer, {});
+  constructor(NgRedux: NgRedux<McAppState>) {
+    NgRedux.configureStore(rootReducer, initialState);
   }
 }
